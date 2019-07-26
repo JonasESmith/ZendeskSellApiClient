@@ -1,6 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
 using RestSharp;
-using System;
 using Zendesk.Deal;
 using Zendesk.Task;
 using Zendesk.Lead;
