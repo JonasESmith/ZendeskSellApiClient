@@ -1,0 +1,9 @@
+C:\Users\Jonas\Desktop\Library\Zendesk\Zendesk\bin\Debug\netstandard2.0\Zendesk.deps.json
+C:\Users\Jonas\Desktop\Library\Zendesk\Zendesk\bin\Debug\netstandard2.0\Zendesk.dll
+C:\Users\Jonas\Desktop\Library\Zendesk\Zendesk\bin\Debug\netstandard2.0\Zendesk.pdb
+C:\Users\Jonas\Desktop\Library\Zendesk\Zendesk\obj\Debug\netstandard2.0\Zendesk.csprojAssemblyReference.cache
+C:\Users\Jonas\Desktop\Library\Zendesk\Zendesk\obj\Debug\netstandard2.0\Zendesk.csproj.CoreCompileInputs.cache
+C:\Users\Jonas\Desktop\Library\Zendesk\Zendesk\obj\Debug\netstandard2.0\Zendesk.AssemblyInfoInputs.cache
+C:\Users\Jonas\Desktop\Library\Zendesk\Zendesk\obj\Debug\netstandard2.0\Zendesk.AssemblyInfo.cs
+C:\Users\Jonas\Desktop\Library\Zendesk\Zendesk\obj\Debug\netstandard2.0\Zendesk.dll
+C:\Users\Jonas\Desktop\Library\Zendesk\Zendesk\obj\Debug\netstandard2.0\Zendesk.pdb
