@@ -249,11 +249,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jonas\\Desktop\\Library\\Zendesk\\Zendesk\\Zendesk.csproj",
+      "projectUniqueName": "C:\\Users\\Jonas\\Desktop\\gitProj\\ZendeskSellApiClient\\ZendeskApi\\Zendesk\\Zendesk.csproj",
       "projectName": "Zendesk",
-      "projectPath": "C:\\Users\\Jonas\\Desktop\\Library\\Zendesk\\Zendesk\\Zendesk.csproj",
+      "projectPath": "C:\\Users\\Jonas\\Desktop\\gitProj\\ZendeskSellApiClient\\ZendeskApi\\Zendesk\\Zendesk.csproj",
       "packagesPath": "C:\\Users\\Jonas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jonas\\Desktop\\Library\\Zendesk\\Zendesk\\obj\\",
+      "outputPath": "C:\\Users\\Jonas\\Desktop\\gitProj\\ZendeskSellApiClient\\ZendeskApi\\Zendesk\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

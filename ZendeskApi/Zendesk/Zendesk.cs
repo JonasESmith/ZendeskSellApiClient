@@ -58,6 +58,29 @@ namespace Zendesk
       return reponse.Content;
     }
 
+    /// <summary>
+    /// Create a UpdateDealObject and pass it all the variables from the original deal only updating the values you want to update form the original
+    /// this will return a json String
+    /// </summary>
+    /// <param name="authorizationString"></param>
+    /// <param name="updatedDeal"></param>
+    /// <param name="dealID"></param>
+    /// <returns></returns>
+    public string UpdateDeal(string authorizationString, UpdateDealObject updatedDeal, string dealID)
+    {
+      var client             = new RestClient() { BaseUrl = new Uri(" https://api.getbase.com/v2/") };
+      var request            = new RestRequest(string.Format(" https://api.getbase.com/v2/deals/{0}", dealID), Method.PUT) { RequestFormat = DataFormat.Json };
+      request.JsonSerializer = new RestSharpJsonNetSerializer();
+
+      request.AddHeader("Accept", "application/json")
+             .AddHeader("Content-Type", "application/json")
+             .AddHeader("Authorization", "Bearer 569ff471e1fb35bdb0f86e0a521e456ae5d45912947ce1c9514946e2446a3bf0");
+      request.AddJsonBody(updatedDeal);
+
+      var response = client.Execute(request);
+      return response.Content;
+    }
+
 
     #endregion
 
@@ -93,13 +116,13 @@ namespace Zendesk
 
     #endregion
 
-    
+
 
 
     /***********************************************/
     /*                 Leads                       */
     /***********************************************/
-    #region Tasks
+    #region Leads 
 
     /// <summary>
     /// Creates a new lead with the passed CreateLeadObject associated with this method and returns a json string
@@ -131,7 +154,7 @@ namespace Zendesk
     /***********************************************/
     /*                 Order                       */
     /***********************************************/
-    #region Tasks
+    #region Orders
 
     /// <summary>
     /// Gets the order associated with the Deal ID passed and returns a json string
@@ -160,7 +183,7 @@ namespace Zendesk
     /// <param name="lineItem"></param>
     /// <param name="orderID"></param>
     /// <returns></returns>
-    public string AddLineItemToOrder(string authorizationString, LineItemObject lineItem, string orderID)
+    public string AddALineItemToOrder(string authorizationString, LineItemObject lineItem, string orderID)
     {
       var client      = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
       var request     = new RestRequest(string.Format("https://api.getbase.com/v2/orders/{0}/line_items", orderID), Method.POST)
