@@ -25,9 +25,9 @@ namespace Zendesk
     /// <returns></returns>
     public string GetDeal(string authorizationString, string dealID)
     {
-      var client = new RestClient();
+      var client     = new RestClient();
       client.BaseUrl = new Uri("https://api.getbase.com/v2");
-      var request = new RestRequest(string.Format("https://api.getbase.com/v2/deals/{0}", dealID), Method.GET)
+      var request    = new RestRequest(string.Format("https://api.getbase.com/v2/deals/{0}", dealID), Method.GET)
                            .AddHeader("Accept", "application/json")
                            .AddHeader("Authorization", authorizationString);
 
@@ -99,8 +99,8 @@ namespace Zendesk
     /// <returns></returns>
     public string CreateTask(string authorizationString, CreateTaskObject task)
     {
-      var client = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
-      var request = new RestRequest("https://api.getbase.com/v2/tasks", Method.POST) { RequestFormat = DataFormat.Json };
+      var client             = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
+      var request            = new RestRequest("https://api.getbase.com/v2/tasks", Method.POST) { RequestFormat = DataFormat.Json };
       request.JsonSerializer = new RestSharpJsonNetSerializer();
 
       request.AddHeader("Accept", "application/json")
