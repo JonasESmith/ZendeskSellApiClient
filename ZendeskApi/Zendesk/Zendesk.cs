@@ -184,6 +184,27 @@ namespace Zendesk
       return response.Content;
     }
 
+    /// <summary>
+    /// Creates order based on the newOrderObject passed with the a dealID
+    /// </summary>
+    /// <param name="order"></param>
+    /// <returns></returns>
+    public string CreateOrder( NewOrderObject order)
+    {
+      var client             = new RestClient();
+      client.BaseUrl         = new Uri("https://api.getbase.com/v2/");
+      var request            = new RestRequest("https://api.getbase.com/v2/orders", Method.POST) { RequestFormat = DataFormat.Json };
+      request.JsonSerializer = new RestSharpJsonNetSerializer();
+
+      request.AddHeader("Accept", "application/json")
+             .AddHeader("Content-Type", "application/json")
+             .AddHeader("Authorization", "Bearer 569ff471e1fb35bdb0f86e0a521e456ae5d45912947ce1c9514946e2446a3bf0")
+             .AddJsonBody(order);
+
+      var    response = client.Execute(request);
+      return response.Content;
+    }
+
 
     /// <summary>
     /// Takes a lineItem object and will add it to an order with the corresponding orderId passed returns json string of the results
