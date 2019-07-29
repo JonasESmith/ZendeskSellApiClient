@@ -238,9 +238,9 @@ namespace Zendesk
     #region Products
 
     public string GetProducts(int page_number, int number_per_page) {
-      var client = new RestClient();
+      var client     = new RestClient();
       client.BaseUrl = new Uri("https://api.getbase.com/v2");
-      var request = new RestRequest("https://api.getbase.com/v2/products", Method.GET)
+      var request    = new RestRequest("https://api.getbase.com/v2/products", Method.GET)
                         .AddParameter("page", page_number)
                         .AddParameter("per_page", number_per_page)
                         .AddHeader("Accept", "application/json")
@@ -251,10 +251,15 @@ namespace Zendesk
       return response.Content;
     }
 
+    /// <summary>
+    /// Creates a product associate with the object passed withit.
+    /// </summary>
+    /// <param name="product"></param>
+    /// <returns></returns>
     public string CreateProduct(NewProductObject product) {
 
-      var client = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
-      var request = new RestRequest("https://api.getbase.com/v2/products", Method.POST) { RequestFormat = DataFormat.Json };
+      var client             = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
+      var request            = new RestRequest("https://api.getbase.com/v2/products", Method.POST) { RequestFormat = DataFormat.Json };
       request.JsonSerializer = new RestSharpJsonNetSerializer();
 
       request.AddHeader("Accept", "application/json")
