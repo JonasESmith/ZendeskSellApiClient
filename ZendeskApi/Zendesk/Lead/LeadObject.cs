@@ -2,29 +2,18 @@
 
 namespace Zendesk.Lead
 {
-  /// <summary>
-  /// Simple object for Created leads to be posted to Zendesk
-  /// </summary>
-  public class CreateLeadObject
+  public class LeadObject
   {
-    public CreateLead_Data data { get; set; }
-    public CreateLead_Meta1 meta { get; set; }
-
-    public CreateLeadObject()
+    public class ZenLeadItem
     {
-      data = new CreateLead_Data();
-      meta = new CreateLead_Meta1();
+      public ZenLeadData data { get; set; }
+      public ZenLeadMeta1 meta { get; set; }
     }
 
-    public class CreateLead_Data
+    public class ZenLeadData
     {
-      public CreateLead_Data()
-      {
-        address = new CreateLead_Address();
-        custom_fields = new CreateLeadCustom_Fields();
-        tags = new string[] { "" };
-    }
-
+      public int id { get; set; }
+      public int creator_id { get; set; }
       public int owner_id { get; set; }
       public string first_name { get; set; }
       public string last_name { get; set; }
@@ -43,12 +32,14 @@ namespace Zendesk.Lead
       public string facebook { get; set; }
       public string linkedin { get; set; }
       public string skype { get; set; }
-      public CreateLead_Address address { get; set; }
+      public ZenLeadAddress address { get; set; }
       public string[] tags { get; set; }
-      public CreateLeadCustom_Fields custom_fields { get; set; }
+      public ZenLeadCustomFields custom_fields { get; set; }
+      public DateTime created_at { get; set; }
+      public DateTime updated_at { get; set; }
     }
 
-    public class CreateLead_Address
+    public class ZenLeadAddress
     {
       public string line1 { get; set; }
       public string city { get; set; }
@@ -57,14 +48,15 @@ namespace Zendesk.Lead
       public string country { get; set; }
     }
 
-    public class CreateLeadCustom_Fields
+    public class ZenLeadCustomFields
     {
       public string known_via { get; set; }
     }
 
-    public class CreateLead_Meta1
+    public class ZenLeadMeta1
     {
       public string type { get; set; }
     }
+
   }
 }

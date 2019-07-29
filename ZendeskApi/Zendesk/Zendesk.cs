@@ -5,11 +5,21 @@ using Zendesk.Task;
 using Zendesk.Lead;
 using Zendesk.Order;
 using Zendesk.LineItem;
+using Zendesk.Products;
 
 namespace Zendesk
 {
-  public class Zendesk
+  public class ZendeskApi
   {
+    public string authorizationString { get; set; }
+
+    /// <summary>
+    /// Object Constructor for Zendesk Item!
+    /// </summary>
+    public ZendeskApi(string _auth)
+    {
+      authorizationString = _auth;
+    }
 
     /***********************************************/
     /*                 Deals                       */
@@ -22,7 +32,7 @@ namespace Zendesk
     /// <param name="authorizationString"></param>
     /// <param name="dealID"></param>
     /// <returns></returns>
-    public string GetDeal(string authorizationString, string dealID)
+    public string GetDeal( string dealID)
     {
       var client     = new RestClient();
       client.BaseUrl = new Uri("https://api.getbase.com/v2");
@@ -41,7 +51,7 @@ namespace Zendesk
     /// <param name="authorizationString"></param>
     /// <param name="deal"></param>
     /// <returns></returns>
-    public string CreateDeal(string authorizationString, CreateDealObject deal)
+    public string CreateDeal( CreateDealObject deal)
     {
       var client             = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
       var request            = new RestRequest("https://api.getbase.com/v2/deals", Method.POST) { RequestFormat = DataFormat.Json };
@@ -65,7 +75,7 @@ namespace Zendesk
     /// <param name="updatedDeal"></param>
     /// <param name="dealID"></param>
     /// <returns></returns>
-    public string UpdateDeal(string authorizationString, UpdateDealObject updatedDeal, string dealID)
+    public string UpdateDeal( UpdateDealObject updatedDeal, string dealID)
     {
       var client             = new RestClient() { BaseUrl = new Uri(" https://api.getbase.com/v2/") };
       var request            = new RestRequest(string.Format(" https://api.getbase.com/v2/deals/{0}", dealID), Method.PUT) { RequestFormat = DataFormat.Json };
@@ -96,7 +106,7 @@ namespace Zendesk
     /// <param name="authorizationString"></param>
     /// <param name="task"></param>
     /// <returns></returns>
-    public string CreateTask(string authorizationString, CreateTaskObject task)
+    public string CreateTask( CreateTaskObject task)
     {
       var client             = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
       var request            = new RestRequest("https://api.getbase.com/v2/tasks", Method.POST) { RequestFormat = DataFormat.Json };
@@ -129,7 +139,7 @@ namespace Zendesk
     /// <param name="authorizationString"></param>
     /// <param name="task"></param>
     /// <returns></returns>
-    public string CreateLead(string authorizationString, CreateLeadObject lead)
+    public string CreateLead( CreateLeadObject lead)
     {
       var client             = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
       var request            = new RestRequest("https://api.getbase.com/v2/leads", Method.POST) { RequestFormat = DataFormat.Json };
@@ -151,7 +161,7 @@ namespace Zendesk
 
 
     /***********************************************/
-    /*                 Order                       */
+    /*                 Orders                      */
     /***********************************************/
     #region Orders
 
@@ -161,7 +171,7 @@ namespace Zendesk
     /// <param name="authorizationString"></param>
     /// <param name="task"></param>
     /// <returns></returns>
-    public string GetOrder_ByDealId(string authorizationString, string dealID)
+    public string GetOrder_ByDealId( string dealID)
     {
       var client             = new RestClient();
       client.BaseUrl         = new Uri("https://api.getbase.com/v2/");
@@ -182,7 +192,7 @@ namespace Zendesk
     /// <param name="lineItem"></param>
     /// <param name="orderID"></param>
     /// <returns></returns>
-    public string AddALineItemToOrder(string authorizationString, LineItemObject lineItem, string orderID)
+    public string AddALineItemToOrder( LineItemObject lineItem, string orderID)
     {
       var client      = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
       var request     = new RestRequest(string.Format("https://api.getbase.com/v2/orders/{0}/line_items", orderID), Method.POST)
@@ -199,5 +209,43 @@ namespace Zendesk
     }
 
     #endregion
+
+
+    /***********************************************/
+    /*                 Products                    */
+    /***********************************************/
+    #region Products
+
+    public string GetProducts(int page_number, int number_per_page) {
+      var client = new RestClient();
+      client.BaseUrl = new Uri("https://api.getbase.com/v2");
+      var request = new RestRequest("https://api.getbase.com/v2/products", Method.GET)
+                        .AddParameter("page", page_number)
+                        .AddParameter("per_page", number_per_page)
+                        .AddHeader("Accept", "application/json")
+                        .AddHeader("Authorization", authorizationString);
+
+      var response = client.Execute(request);
+
+      return response.Content;
+    }
+
+    public string CreateProduct(NewProductObject product) {
+
+      var client = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
+      var request = new RestRequest("https://api.getbase.com/v2/products", Method.POST) { RequestFormat = DataFormat.Json };
+      request.JsonSerializer = new RestSharpJsonNetSerializer();
+
+      request.AddHeader("Accept", "application/json")
+             .AddHeader("Content-Type", "application/json")
+             .AddHeader("Authorization", authorizationString);
+      request.AddJsonBody(product);
+
+      var response = client.Execute(request);
+
+      return response.Content;
+    }
+    #endregion
+
   }
 }
