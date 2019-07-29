@@ -15,3 +15,4 @@ C:\Users\Jonas\Desktop\gitProj\ZendeskSellApiClient\ZendeskApi\Zendesk\obj\Debug
 C:\Users\Jonas\Desktop\gitProj\ZendeskSellApiClient\ZendeskApi\Zendesk\obj\Debug\netstandard2.0\Zendesk.AssemblyInfo.cs
 C:\Users\Jonas\Desktop\gitProj\ZendeskSellApiClient\ZendeskApi\Zendesk\obj\Debug\netstandard2.0\Zendesk.dll
 C:\Users\Jonas\Desktop\gitProj\ZendeskSellApiClient\ZendeskApi\Zendesk\obj\Debug\netstandard2.0\Zendesk.pdb
+C:\Users\Jonas\Desktop\gitProj\ZendeskSellApiClient\ZendeskApi\Zendesk\obj\Debug\netstandard2.0\Zendesk.csprojAssemblyReference.cache

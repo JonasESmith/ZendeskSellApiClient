@@ -59,7 +59,7 @@ namespace Zendesk
 
       request.AddHeader("Accept", "application/json")
              .AddHeader("Content-Type", " application/json")
-             .AddHeader("Authorization", "");
+             .AddHeader("Authorization", authorizationString);
       request.AddJsonBody(deal);
 
       var reponse = client.Execute(request);
