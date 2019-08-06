@@ -273,5 +273,36 @@ namespace Zendesk
     }
     #endregion
 
+
+
+
+
+    /***********************************************/
+    /*                 Contacts                    */
+    /***********************************************/
+    #region Contacts
+      /// <summary>
+      /// Gets the current numbers of contacts per the page selected returns data in a ContactListObject format
+      /// 
+      /// </summary>
+      /// <param name="page_number"></param>
+      /// <param name="number_per_page"></param>
+      /// <returns></returns>
+      public string GetContacts(int page_number, int number_per_page)
+      {
+        var client = new RestClient();
+        client.BaseUrl = new Uri("https://api.getbase.com/v2");
+        var request = new RestRequest("https://api.getbase.com/v2/contacts", Method.GET)
+                          .AddParameter("page", page_number)
+                          .AddParameter("per_page", number_per_page)
+                          .AddHeader("Accept", "application/json")
+                          .AddHeader("Authorization", authorizationString);
+
+        var response = client.Execute(request);
+
+        return response.Content;
+      }
+
+    #endregion
   }
 }
