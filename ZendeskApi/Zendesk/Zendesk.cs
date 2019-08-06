@@ -6,6 +6,7 @@ using Zendesk.Lead;
 using Zendesk.Order;
 using Zendesk.LineItem;
 using Zendesk.Products;
+using Zendesk.Contact;
 
 namespace Zendesk
 {
@@ -281,9 +282,10 @@ namespace Zendesk
     /*                 Contacts                    */
     /***********************************************/
     #region Contacts
+
+
       /// <summary>
-      /// Gets the current numbers of contacts per the page selected returns data in a ContactListObject format
-      /// 
+      /// Gets the current number of contacts for the page selected and returns an item of ContactListObject
       /// </summary>
       /// <param name="page_number"></param>
       /// <param name="number_per_page"></param>
@@ -302,6 +304,28 @@ namespace Zendesk
 
         return response.Content;
       }
+
+    /// <summary>
+    /// Creates a new contact with the information passed in with the contact objects
+    /// </summary>
+    /// <param name="contact"></param>
+    /// <returns></returns>
+    public string CreateContact(CreateContactObject contact)
+    {
+
+      var client = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
+      var request = new RestRequest("https://api.getbase.com/v2/contacts", Method.POST) { RequestFormat = DataFormat.Json };
+      request.JsonSerializer = new RestSharpJsonNetSerializer();
+
+      request.AddHeader("Accept", "application/json")
+             .AddHeader("Content-Type", "application/json")
+             .AddHeader("Authorization", authorizationString);
+      request.AddJsonBody(contact);
+
+      var response = client.Execute(request);
+
+      return response.Content;
+    }
 
     #endregion
   }
