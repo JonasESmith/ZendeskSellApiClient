@@ -46,6 +46,21 @@ namespace Zendesk
     }
 
 
+    public string GetDeal_ByName(string dealName)
+    {
+      var client = new RestClient();
+      client.BaseUrl = new Uri("https://api.getbase.com/v2");
+      var request = new RestRequest(string.Format("https://api.getbase.com/v2/deals?name={0}", dealName), Method.GET)
+                           .AddHeader("Accept", "application/json")
+                           .AddHeader("Authorization", authorizationString);
+
+      var response = client.Execute(request);
+      return response.Content;
+    }
+
+
+
+
     /// <summary>
     /// Takes a CreateDealObject  Object and Posts it to Zendesk will return a json String
     /// </summary>
@@ -56,6 +71,28 @@ namespace Zendesk
     {
       var client             = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
       var request            = new RestRequest("https://api.getbase.com/v2/deals", Method.POST) { RequestFormat = DataFormat.Json };
+      request.JsonSerializer = new RestSharpJsonNetSerializer();
+
+      request.AddHeader("Accept", "application/json")
+             .AddHeader("Content-Type", " application/json")
+             .AddHeader("Authorization", authorizationString);
+      request.AddJsonBody(deal);
+
+      var reponse = client.Execute(request);
+
+      return reponse.Content;
+    }
+
+
+    /// <summary>
+    /// Takes an ojbect CreateDealObjectWOwner that allows us to use an Owner Id for the deal created.
+    /// </summary>
+    /// <param name="deal"></param>
+    /// <returns></returns>
+    public string CreateDeal(CreateDealObjectWOwner deal)
+    {
+      var client = new RestClient() { BaseUrl = new Uri("https://api.getbase.com/v2/") };
+      var request = new RestRequest("https://api.getbase.com/v2/deals", Method.POST) { RequestFormat = DataFormat.Json };
       request.JsonSerializer = new RestSharpJsonNetSerializer();
 
       request.AddHeader("Accept", "application/json")

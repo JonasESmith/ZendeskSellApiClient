@@ -60,6 +60,7 @@ namespace Zendesk.Lead
     public class CreateLeadCustom_Fields
     {
       public string known_via { get; set; }
+      public string Requested { get; set; }
     }
 
     public class CreateLead_Meta1
