@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -11,6 +11,8 @@
     <RepositoryUrl>https://github.com/JonasESmith/ZendeskSellApiClient</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>A wrapper around Zendesk Sell's API, build using RestSharp.</Description>
+    <PackageTags>zendesk,sell</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

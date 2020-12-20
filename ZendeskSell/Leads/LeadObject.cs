@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zendesk.Lead
+namespace Zendesk.Leads
 {
   public class LeadObject
   {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zendesk.Order
+namespace Zendesk.Orders
 {
   /// <summary>
   /// All the information returned from zendesk about an order
