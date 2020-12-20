@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zendesk.Contact
+namespace Zendesk.Contacts
 {
 
   public class ContactListObject

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Zendesk.Order
+namespace Zendesk.Orders
 {
   public class ReturnOrderObject
   {

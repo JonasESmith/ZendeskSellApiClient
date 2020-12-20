@@ -1,4 +1,4 @@
-﻿namespace Zendesk.Contact
+﻿namespace Zendesk.Contacts
 {
   /// <summary>
   /// Simples object that is used to pass important information to zendesk

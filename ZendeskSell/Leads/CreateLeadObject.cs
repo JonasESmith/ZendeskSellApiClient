@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zendesk.Lead
+namespace Zendesk.Leads
 {
   /// <summary>
   /// Simple object for Created leads to be posted to Zendesk

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Zendesk.Contact
+namespace Zendesk.Contacts
 {
   public class ContactObject
   {
