@@ -1,10 +1,12 @@
-﻿namespace Zendesk.Contacts
+﻿using System.Threading.Tasks;
+
+namespace ZendeskSell.Contacts
 {
     public interface IContactActions
     {
 
-        string Get(int pageNumber, int numPerPage);
+        Task<ZendeskSellCollectionResponse<ContactResponse>> GetAsync(int pageNumber, int numPerPage);
 
-        string Create(CreateContactObject contact);
+        Task<ZendeskSellObjectResponse<ContactResponse>> CreateAsync(ContactRequest contact);
     }
 }

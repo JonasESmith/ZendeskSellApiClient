@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using RestSharp.Serializers;
 
-namespace Zendesk
+namespace ZendeskSell
 {
   /// <summary>
   /// Default JSON serializer for request bodies

@@ -1,18 +1,17 @@
 ﻿using System;
 using RestSharp;
-using Zendesk.Contacts;
-using Zendesk.Deals;
-using Zendesk.Leads;
-using Zendesk.LineItems;
-using Zendesk.Orders;
-using Zendesk.Products;
-using Zendesk.Tasks;
+using ZendeskSell.Contacts;
+using ZendeskSell.Deals;
+using ZendeskSell.Leads;
+using ZendeskSell.LineItems;
+using ZendeskSell.Orders;
+using ZendeskSell.Products;
+using ZendeskSell.Tasks;
 
-namespace Zendesk
+namespace ZendeskSell
 {
-    public class ZendeskSellClient : IZendeskSellClient
-  {
-        private readonly string _authorizationString;
+    public class ZendeskSellClient : IZendeskSellClient {
+
         private readonly string _baseUrl = "https://api.getbase.com/v2";
         private readonly RestClient _client;
 
