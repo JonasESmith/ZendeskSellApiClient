@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
-using ZendeskSell.Models;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace ZendeskSell
+namespace ZendeskSell.Models
 {
     public class ZendeskSellCollectionResponse<T>
         where T : class

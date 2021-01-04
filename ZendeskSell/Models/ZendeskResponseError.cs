@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace ZendeskSell
+namespace ZendeskSell.Models
 {
     public class ZendeskResponseError
     {
