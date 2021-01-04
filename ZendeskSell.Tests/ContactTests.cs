@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using ZendeskSell;
 using System.Threading.Tasks;
+using ZendeskSell.Contacts;
 
 namespace ZendeskSell.Tests
 {
@@ -17,7 +18,7 @@ namespace ZendeskSell.Tests
         [Test]
         public async Task Test_CreateContact()
         {
-            var dummyContact = new Contacts.ContactRequest()
+            var dummyContact = new ContactRequest()
             {
                 LastName = "Howarth",
                 ProspectStatus = "current",

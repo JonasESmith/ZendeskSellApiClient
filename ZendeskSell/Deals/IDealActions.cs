@@ -1,13 +1,13 @@
-﻿using Zendesk.Deal;
+﻿using System.Threading.Tasks;
 
-namespace Zendesk.Deals
+namespace ZendeskSell.Deals
 {
     public interface IDealActions
     {
-        string Get(string dealID);
-        string GetByName(string dealName);
-        string Create(CreateDealObject deal);
-        string Create(CreateDealObjectWOwner deal);
-        string Update(UpdateDealObject updatedDeal, string dealID);
+        Task<ZendeskSellObjectResponse<DealResponse>> GetAsync(int dealID);
+        Task<ZendeskSellCollectionResponse<DealResponse>> GetByNameAsync(string dealName);
+        Task<ZendeskSellObjectResponse<DealResponse>> CreateAsync(DealRequest deal);
+        Task<ZendeskSellObjectResponse<DealResponse>> CreateAsync(DealByOwnerRequest deal);
+        Task<ZendeskSellObjectResponse<DealResponse>> UpdateAsync(int dealId, DealResponse updatedDeal);
     }
 }
