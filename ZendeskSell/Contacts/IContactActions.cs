@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using ZendeskSell.Models;
 
 namespace ZendeskSell.Contacts
 {

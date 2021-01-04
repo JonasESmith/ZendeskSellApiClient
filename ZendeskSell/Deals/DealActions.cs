@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Validation;
+using ZendeskSell.Models;
 
 namespace ZendeskSell.Deals
 {
@@ -76,6 +77,7 @@ namespace ZendeskSell.Deals
         /// <returns></returns>
         public async Task<ZendeskSellObjectResponse<DealResponse>> UpdateAsync(int dealID, DealResponse updatedDeal)
         {
+            // BH: Needed to convert to base class: https://stackoverflow.com/a/20557095/418297
             var updatedDealAsBase = JsonConvert.DeserializeObject<CoreDealResponse>(JsonConvert.SerializeObject(updatedDeal));
             var request = new RestRequest($"deals/{dealID}", Method.PUT) { RequestFormat = DataFormat.Json };
             request.JsonSerializer = new RestSharpJsonNetSerializer();

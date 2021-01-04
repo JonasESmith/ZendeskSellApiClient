@@ -1,9 +1,7 @@
-﻿using RestSharp;
+﻿using System.Threading.Tasks;
+using RestSharp;
 using RestSharp.Validation;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using ZendeskSell.Models;
 
 namespace ZendeskSell.Contacts
 {
