@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
 using RestSharp.Serializers;
+using ZendeskSell.Deals;
 
 namespace ZendeskSell
 {
@@ -22,7 +23,7 @@ namespace ZendeskSell
       {
         MissingMemberHandling = MissingMemberHandling.Ignore,
         NullValueHandling = NullValueHandling.Include,
-        DefaultValueHandling = DefaultValueHandling.Include
+        DefaultValueHandling = DefaultValueHandling.Include,
       };
     }
 

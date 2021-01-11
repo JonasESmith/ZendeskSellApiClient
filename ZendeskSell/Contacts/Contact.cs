@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using ZendeskSell.Models;
 
 namespace ZendeskSell.Contacts
 {
@@ -9,7 +10,7 @@ namespace ZendeskSell.Contacts
         public ContactRequest()
         {
             Tags = new string[] { };
-            Address = ShippingAddress = BillingAddress = new ContactAddress();
+            Address = ShippingAddress = BillingAddress = new Address();
             CustomFields = new ContactCustomFields();
         }
 		[JsonProperty("owner_id")]
@@ -55,11 +56,11 @@ namespace ZendeskSell.Contacts
         [JsonProperty("skype")]
         public string Skype { get; set; }
         [JsonProperty("address")]
-        public ContactAddress Address { get; set; }
+        public Address Address { get; set; }
 		[JsonProperty("billing_address")]
-        public ContactAddress BillingAddress { get; set; }
+        public Address BillingAddress { get; set; }
 		[JsonProperty("shipping_address")]
-        public ContactAddress ShippingAddress { get; set; }
+        public Address ShippingAddress { get; set; }
         [JsonProperty("tags")]
         public IEnumerable<string> Tags { get; set; }
         [JsonProperty("custom_fields")]
@@ -76,20 +77,6 @@ namespace ZendeskSell.Contacts
         public DateTimeOffset CreatedAt { get; set; }
         [JsonProperty("updated_at")]
         public DateTimeOffset UpdatedAt { get; set; }
-    }
-
-    public class ContactAddress
-    {
-        [JsonProperty("line1")]
-        public string Line1 { get; set; }
-        [JsonProperty("city")]
-        public string City { get; set; }
-        [JsonProperty("state")]
-        public string State { get; set; }
-        [JsonProperty("postal_code")]
-        public string PostalCode { get; set; }
-        [JsonProperty("country")]
-        public string Country { get; set; }
     }
 
     public class ContactCustomFields

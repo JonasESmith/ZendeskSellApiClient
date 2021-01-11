@@ -42,7 +42,7 @@ namespace ZendeskSell.Tests
         {
             var newDeal = new DealByOwnerRequest()
             {
-                OwnerID = 2051801,
+                OwnerID = Constants.OwnerID,
                 ContactID = testContactID,
                 Hot = true,
                 Name = "Test deal with owner",
