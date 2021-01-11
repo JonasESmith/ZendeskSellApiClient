@@ -1,13 +1,15 @@
-﻿using Zendesk.LineItems;
+﻿using System.Threading.Tasks;
+using ZendeskSell.LineItems;
+using ZendeskSell.Models;
 
-namespace Zendesk.Orders
+namespace ZendeskSell.Orders
 {
     public interface IOrderActions
     {
-        string GetByDealID(string dealID);
-        
-        string Create(NewOrderObject order);
+        Task<ZendeskSellObjectResponse<OrderResponse>> GetByDealIDAsync(int dealID);
 
-        string AddLineItem(LineItemObject lineItem, string orderID);
+        Task<ZendeskSellObjectResponse<OrderResponse>> CreateAsync(OrderRequest order);
+
+        Task<ZendeskSellObjectResponse<OrderResponse>> AddLineItemAsync(LineItemData lineItem, int orderID);
     }
 }

@@ -1,6 +1,8 @@
-﻿using RestSharp;
+﻿using System.Threading.Tasks;
+using RestSharp;
+using ZendeskSell.Models;
 
-namespace Zendesk.Products
+namespace ZendeskSell.Products
 {
     public class ProductActions : IProductActions
     {
@@ -11,13 +13,12 @@ namespace Zendesk.Products
             _client = client;
         }
 
-        public string Get(int pageNumber, int numPerPage)
+        public async Task<ZendeskSellCollectionResponse<ProductResponse>> GetAsync(int pageNumber, int numPerPage)
         {
-            var request = new RestRequest("products", Method.GET)
+            var request = new RestRequest("products")
                               .AddParameter("page", pageNumber)
                               .AddParameter("per_page", numPerPage);
-            var response = _client.Execute(request);
-            return response.Content;
+            return (await _client.ExecuteGetTaskAsync<ZendeskSellCollectionResponse<ProductResponse>>(request)).Data;
         }
 
         /// <summary>
@@ -25,14 +26,12 @@ namespace Zendesk.Products
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        public string Create(NewProductObject product)
+        public async Task<ZendeskSellObjectResponse<ProductResponse>> CreateAsync(ProductRequest product)
         {
-
-            var request = new RestRequest("products", Method.POST) { RequestFormat = DataFormat.Json };
+            var request = new RestRequest("products") { RequestFormat = DataFormat.Json };
             request.JsonSerializer = new RestSharpJsonNetSerializer();
             request.AddJsonBody(product);
-            var response = _client.Execute(request);
-            return response.Content;
+            return (await _client.ExecutePostTaskAsync<ZendeskSellObjectResponse<ProductResponse>>(request)).Data;
         }
     }
 }

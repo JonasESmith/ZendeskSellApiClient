@@ -1,9 +1,13 @@
-﻿namespace Zendesk.Products
+﻿using System.Threading.Tasks;
+using ZendeskSell.Models;
+using ZendeskSell.Orders;
+
+namespace ZendeskSell.Products
 {
     public interface IProductActions
     {
-        string Get(int pageNumber, int numPerPage);
+        Task<ZendeskSellCollectionResponse<ProductResponse>> GetAsync(int pageNumber, int numPerPage);
 
-        string Create(NewProductObject product);
+        Task<ZendeskSellObjectResponse<ProductResponse>> CreateAsync(ProductRequest product);
     }
 }
