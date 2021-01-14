@@ -1,9 +1,9 @@
-﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Threading.Tasks;
+using RestSharp;
+using RestSharp.Validation;
+using ZendeskSell.Models;
 
-namespace Zendesk.Contacts
+namespace ZendeskSell.Contacts
 {
     public class ContactActions : IContactActions
     {
@@ -14,22 +14,24 @@ namespace Zendesk.Contacts
             _client = client;
         }
 
-        public string Create(CreateContactObject contact)
+        public async Task<ZendeskSellObjectResponse<ContactResponse>> CreateAsync(ContactRequest contact)
         {
+            Require.Argument("LastName", contact.ProspectStatus);
+            Require.Argument("CustomerStatus", contact.CustomerStatus);
+            Require.Argument("ProspectStatus", contact.ProspectStatus);
             var request = new RestRequest("contacts", Method.POST) { RequestFormat = DataFormat.Json };
+            var body = new ZendeskSellRequest<ContactRequest>() { Data = contact };
             request.JsonSerializer = new RestSharpJsonNetSerializer();
-            request.AddJsonBody(contact);
-            var response = _client.Execute(request);
-            return response.Content;
+            request.AddJsonBody(body);
+            return (await _client.ExecutePostTaskAsync<ZendeskSellObjectResponse<ContactResponse>>(request)).Data;
         }
 
-        public string Get(int pageNumber, int numPerPage)
+        public async Task<ZendeskSellCollectionResponse<ContactResponse>> GetAsync(int pageNumber, int numPerPage)
         {
             var request = new RestRequest("https://api.getbase.com/v2/contacts", Method.GET)
                               .AddParameter("page", pageNumber)
                               .AddParameter("per_page", numPerPage);
-            var response = _client.Execute(request);
-            return response.Content;
+            return (await _client.ExecuteGetTaskAsync<ZendeskSellCollectionResponse<ContactResponse>>(request)).Data;
         }
     }
 }

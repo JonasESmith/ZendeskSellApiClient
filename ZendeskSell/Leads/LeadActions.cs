@@ -1,6 +1,8 @@
-﻿using RestSharp;
+﻿using System.Threading.Tasks;
+using RestSharp;
+using ZendeskSell.Models;
 
-namespace Zendesk.Leads
+namespace ZendeskSell.Leads
 {
     public class LeadActions : ILeadActions
     {
@@ -9,7 +11,7 @@ namespace Zendesk.Leads
         public LeadActions(RestClient client)
         {
             _client = client;
-        } 
+        }
 
         /// <summary>
         /// Creates a new lead with the passed CreateLeadObject associated with this method and returns a json string
@@ -17,13 +19,12 @@ namespace Zendesk.Leads
         /// <param name="authorizationString"></param>
         /// <param name="task"></param>
         /// <returns></returns>
-        public string Create(CreateLeadObject lead)
+        public async Task<ZendeskSellObjectResponse<LeadResponse>> CreateAsync(LeadRequest lead)
         {
-            var request = new RestRequest("leads", Method.POST) { RequestFormat = DataFormat.Json };
+            var request = new RestRequest("leads") { RequestFormat = DataFormat.Json };
             request.JsonSerializer = new RestSharpJsonNetSerializer();
-            request.AddJsonBody(lead);
-            var response = _client.Execute(request);
-            return response.Content;
+            request.AddJsonBody(new ZendeskSellRequest<LeadRequest>(lead));
+            return (await _client.ExecutePostTaskAsync<ZendeskSellObjectResponse<LeadResponse>>(request)).Data;
         }
     }
 }

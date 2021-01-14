@@ -1,7 +1,9 @@
-﻿using RestSharp;
-using Zendesk.LineItems;
+﻿using System.Threading.Tasks;
+using RestSharp;
+using ZendeskSell.LineItems;
+using ZendeskSell.Models;
 
-namespace Zendesk.Orders
+namespace ZendeskSell.Orders
 {
     public class OrderActions : IOrderActions
     {
@@ -18,12 +20,11 @@ namespace Zendesk.Orders
         /// <param name="authorizationString"></param>
         /// <param name="task"></param>
         /// <returns></returns>
-        public string GetByDealID(string dealID)
+        public async Task<ZendeskSellObjectResponse<OrderResponse>> GetByDealIDAsync(int dealID)
         {
-            var request = new RestRequest("orders", Method.GET) { RequestFormat = DataFormat.Json };
+            var request = new RestRequest("orders") { RequestFormat = DataFormat.Json };
             request.AddParameter("deal_id", dealID);
-            var response = _client.Execute(request);
-            return response.Content;
+            return (await _client.ExecuteGetTaskAsync<ZendeskSellObjectResponse<OrderResponse>>(request)).Data;
         }
 
         /// <summary>
@@ -31,13 +32,12 @@ namespace Zendesk.Orders
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        public string Create(NewOrderObject order)
+        public async Task<ZendeskSellObjectResponse<OrderResponse>> CreateAsync(OrderRequest order)
         {
-            var request = new RestRequest("orders", Method.POST) { RequestFormat = DataFormat.Json };
+            var request = new RestRequest("orders") { RequestFormat = DataFormat.Json };
             request.JsonSerializer = new RestSharpJsonNetSerializer();
-            request.AddJsonBody(order);
-            var response = _client.Execute(request);
-            return response.Content;
+            request.AddJsonBody(new ZendeskSellRequest<OrderRequest>(order));
+            return (await _client.ExecutePostTaskAsync<ZendeskSellObjectResponse<OrderResponse>>(request)).Data;
         }
 
 
@@ -48,14 +48,12 @@ namespace Zendesk.Orders
         /// <param name="lineItem"></param>
         /// <param name="orderID"></param>
         /// <returns></returns>
-        public string AddLineItem(LineItemObject lineItem, string orderID)
+        public async Task<ZendeskSellObjectResponse<OrderResponse>> AddLineItemAsync(LineItemData lineItem, int orderID)
         {
-            var request = new RestRequest($"orders/{orderID}/line_items", Method.POST)
+            var request = new RestRequest($"orders/{orderID}/line_items")
             { RequestFormat = DataFormat.Json, JsonSerializer = new RestSharpJsonNetSerializer() };
             request.AddJsonBody(lineItem);
-
-            var response = _client.Execute(request);
-            return response.Content;
+            return (await _client.ExecutePostTaskAsync<ZendeskSellObjectResponse<OrderResponse>>(request)).Data;
         }
     }
 }

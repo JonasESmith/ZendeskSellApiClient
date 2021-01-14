@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
 using RestSharp.Serializers;
+using ZendeskSell.Deals;
 
-namespace Zendesk
+namespace ZendeskSell
 {
   /// <summary>
   /// Default JSON serializer for request bodies
@@ -22,7 +23,7 @@ namespace Zendesk
       {
         MissingMemberHandling = MissingMemberHandling.Ignore,
         NullValueHandling = NullValueHandling.Include,
-        DefaultValueHandling = DefaultValueHandling.Include
+        DefaultValueHandling = DefaultValueHandling.Include,
       };
     }
 
